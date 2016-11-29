@@ -15,7 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        Gigya.initWithAPIKey("3_TZyXuEvGq5ENGh-J3ntJAlI_mm-irzVD_aBG16YzqBXd5qVpXnXpcwWsokBY7wvB", application: application, launchOptions: launchOptions)
         return true
     }
 
@@ -34,13 +35,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        Gigya.handleDidBecomeActive()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any]) -> Bool {
+        
+        var newDict:[String:Any] = [:]
+        for (key, value) in options {
+            newDict[key.rawValue] = value
+        }
+        return Gigya.handleOpen(url, app: app, options: newDict)
+    }
+    
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return Gigya.handleOpen(url, application: application, sourceApplication: sourceApplication, annotation: annotation)
+    }
 
 }
 
