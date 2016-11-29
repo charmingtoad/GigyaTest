@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        Gigya.initWithAPIKey("3_TZyXuEvGq5ENGh-J3ntJAlI_mm-irzVD_aBG16YzqBXd5qVpXnXpcwWsokBY7wvB", application: application, launchOptions: launchOptions)
+        Gigya.initWithAPIKey("", application: application, launchOptions: launchOptions)
         return true
     }
 
